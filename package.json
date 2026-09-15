@@ -12,6 +12,7 @@
     "redeploy:flowsub": "npm run contracts:compile && node scripts/redeploy-flowsub.mjs",
     "verify:testnet": "node scripts/verify-testnet.mjs",
     "check:testnet": "node scripts/check-deployment.mjs",
+    "check:verification": "node scripts/check-verification.mjs",
     "keeper:once": "node scripts/run-keeper.mjs"
   },
   "dependencies": {
@@ -27,6 +28,6 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "dotenv": "^17.4.2",
-    "solc": "^0.8.37"
+    "solc": "^0.8.36"
   }
 }

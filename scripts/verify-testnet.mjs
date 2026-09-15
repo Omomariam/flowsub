@@ -30,7 +30,7 @@ async function verify(label,address,contractName,constructorArgs=''){
     await new Promise(resolve=>setTimeout(resolve,3000))
     const status=await call({module:'contract',action:'checkverifystatus',guid})
     const message=String(status.result||status.message)
-    if(status.status==='1'||/pass|already verified/i.test(message)){console.log(`${label} verified successfully.`);return}
+    if(/pass|already verified/i.test(message)){console.log(`${label} verified successfully.`);return}
     if(!/pending|queue/i.test(message))throw new Error(`${label} verification failed: ${message}`)
   }
   throw new Error(`${label} verification timed out; check the explorer manually.`)

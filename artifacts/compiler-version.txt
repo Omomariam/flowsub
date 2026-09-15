@@ -1,1 +1,1 @@
-v0.8.37+commit.f401782d.Emscripten.clang
+v0.8.36+commit.8a079791

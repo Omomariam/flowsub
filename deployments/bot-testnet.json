@@ -2,13 +2,13 @@
   "chainId": 968,
   "deployer": "0x3FC4F07525cbB3a3aFd75d03758b79B8bdfa0f3A",
   "token": {
-    "address": "0x066278195117b7fe44955b874df74b6d4a41266c",
-    "transactionHash": "0xfd6a2466d1fe8f4032d69ce314b40d45d0e4d0ac9c2b22706ac3a481d1a8d105",
-    "blockNumber": 23477536
+    "address": "0xb63dd785a492d4e1b94ccd75396604cf4f142106",
+    "transactionHash": "0x09e27f8fbbf262b26bab52ca019af998ffb1cd455de03a2b8ce9df15901d587a",
+    "blockNumber": 23480835
   },
   "flowSub": {
-    "address": "0x298b98c28758ac61bd5ff9586a017435653c0a16",
-    "transactionHash": "0x2aceeac9d3a83f2fdc3e371beebcae1c033772dcdd804b6d6f12845aa56fbd49",
-    "blockNumber": 23478910
+    "address": "0xaa457fec1240619f2a4f7b7c27b70b4c7ea284e0",
+    "transactionHash": "0x81143ed3626c5f1f14ad63fa3ba3376584f4f1bd0a002954777841033ac4d43c",
+    "blockNumber": 23480846
   }
 }
