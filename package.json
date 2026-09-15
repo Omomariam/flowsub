@@ -1,0 +1,32 @@
+{
+  "name": "flowsub",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "contracts:compile": "node scripts/compile-contracts.mjs",
+    "deploy:testnet": "npm run contracts:compile && node scripts/deploy-testnet.mjs",
+    "redeploy:flowsub": "npm run contracts:compile && node scripts/redeploy-flowsub.mjs",
+    "verify:testnet": "node scripts/verify-testnet.mjs",
+    "check:testnet": "node scripts/check-deployment.mjs",
+    "keeper:once": "node scripts/run-keeper.mjs"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "lucide-react": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "typescript": "latest",
+    "viem": "^2.56.5",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "dotenv": "^17.4.2",
+    "solc": "^0.8.37"
+  }
+}
