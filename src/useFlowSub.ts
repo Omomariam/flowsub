@@ -127,6 +127,8 @@ export function useFlowSub() {
   },[account,chainId,load,switchNetwork])
 
   const createPlan = useCallback((input:{name:string;description:string;price:string;interval:number;duration:number}) => transact('Creating plan…', async(wallet,owner) => {
+    if (!Number.isInteger(input.duration) || input.duration < 0 || input.duration > 4294967295) throw new Error('Expiry must be a whole number of seconds within the supported range.')
+    if (input.duration !== 0 && input.duration < input.interval) throw new Error(`Expiry must be 0 (no expiry) or at least ${Math.ceil(input.interval / 86400)} days for the selected billing interval.`)
     const value=parseUnits(input.price,tokenDecimals); const {request}=await publicClient.simulateContract({address:flowSubAddress,abi:flowSubAbi,functionName:'createPlan',args:[input.name,input.description,value,input.interval,input.duration],account:owner}); return wallet.writeContract(request)
   }),[tokenDecimals,transact])
 
