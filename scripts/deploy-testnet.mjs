@@ -1,4 +1,6 @@
-import 'dotenv/config'
+import { networkName, assertChain } from './lib/network.mjs'
+if(networkName !== 'testnet') throw new Error('This command is testnet-only')
+await assertChain()
 import fs from 'node:fs'
 import { createPublicClient, createWalletClient, defineChain, http } from 'viem'
 import { privateKeyToAccount } from 'viem/accounts'

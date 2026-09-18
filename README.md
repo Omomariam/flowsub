@@ -62,4 +62,10 @@ Run that command on a secure scheduled worker at the frequency appropriate for y
 
 ## Production notes
 
-The contracts are functional prototypes, not audited production financial infrastructure. Before mainnet use, add comprehensive contract tests, bounded/paginated indexing, an audited automation service, retry and grace-period policies, monitoring, multisig administration where applicable, and an independent security audit.
+The contracts are functional prototypes, not audited production financial infrastructure. Mainnet tooling now includes contract tests, paginated reads, cached history, and a persistent keeper. Public real-value use still requires token provenance checks, a supported log provider, an independent security review, measured gas funding, live smoke testing, and configured hosting/monitoring. See MAINNET.md for the launch gates.
+
+## BOT Chain mainnet
+
+Mainnet configuration, deployment, verification, browser-safe history providers, keeper scheduling, billing behavior, and incident response are documented in [MAINNET.md](MAINNET.md). Start with `.env.mainnet.example` for server secrets and `.env.production.example` for public frontend settings. Mainnet commands use chain 677 and do not deploy MockUSDT or inherit the existing testnet `.env`.
+
+Run `npm test`, `npm run test:contracts`, and `npm run test:operations` before release. The operations suite uses a local EVM with chain ID 677; it does not send transactions to the real mainnet.

@@ -1,17 +1,19 @@
-import 'dotenv/config'
+import { manifestPath, networkName, network, assertDeployment } from './lib/network.mjs'
 import fs from 'node:fs'
 import { encodeAbiParameters } from 'viem'
 
 const apiKey=process.env.BLOCKSCOUT_API_KEY
-if(!apiKey){console.error('Set BLOCKSCOUT_API_KEY in .env.');process.exit(1)}
-if(!fs.existsSync('deployments/bot-testnet.json')){console.error('Run npm run deploy:testnet first.');process.exit(1)}
-const deployment=JSON.parse(fs.readFileSync('deployments/bot-testnet.json','utf8'))
+
+if(!fs.existsSync(manifestPath)){console.error(`Missing ${manifestPath}; deploy the selected network first.`);process.exit(1)}
+const deployment=JSON.parse(fs.readFileSync(manifestPath,'utf8'))
 const sourceCode=fs.readFileSync('artifacts/standard-input.json','utf8')
 const compilerVersion=fs.readFileSync('artifacts/compiler-version.txt','utf8').trim()
-const apiBase=process.env.BLOCKSCOUT_API_URL||'https://scan.bohr.life/api'
+if(deployment.sourceHash){const crypto=await import('node:crypto');if(crypto.createHash('sha256').update(sourceCode).digest('hex')!==deployment.sourceHash || compilerVersion!==deployment.compilerVersion) throw new Error('Verification artifacts do not match deployment')}
+await assertDeployment(deployment)
+const apiBase=process.env.BLOCKSCOUT_API_URL || `${network.explorer}/api`
 
 async function call(params){
-  const body=new URLSearchParams({...params,apikey:apiKey})
+  const body=new URLSearchParams({...params,...(apiKey?{apikey:apiKey}:{})})
   const response=await fetch(apiBase,{method:'POST',headers:{'content-type':'application/x-www-form-urlencoded'},body})
   const text=await response.text()
   try{return JSON.parse(text)}catch{throw new Error(`Blockscout returned HTTP ${response.status}: ${text.slice(0,240)}`)}
@@ -36,7 +38,7 @@ async function verify(label,address,contractName,constructorArgs=''){
   throw new Error(`${label} verification timed out; check the explorer manually.`)
 }
 
-await verify('MockUSDT',deployment.token.address,'MockUSDT.sol:MockUSDT')
+if(networkName === 'testnet') await verify('MockUSDT',deployment.token.address,'MockUSDT.sol:MockUSDT')
 const constructorArgs=encodeAbiParameters([{type:'address'}],[deployment.token.address]).slice(2)
 await verify('FlowSub',deployment.flowSub.address,'FlowSub.sol:FlowSub',constructorArgs)
-console.log('All BOT Chain testnet contracts are verified.')
+console.log('FlowSub verification completed for the selected network.')

@@ -1,0 +1,11 @@
+{
+  "status": "verified",
+  "match": "partial",
+  "verifiedAt": "2026-09-18T16:32:59.580776Z",
+  "explorerUrl": "https://scan.botchain.ai/address/0xa1a3f61d532ad5ef961cdf36812c1f19c05a39c7?tab=contract",
+  "deploymentCompiler": "v0.8.37+commit.f401782d",
+  "verificationCompiler": "v0.8.36+commit.8a079791",
+  "executableBytecodeMatches": true,
+  "reason": "BOTScan does not yet support deployed Solidity 0.8.37. Identical source compiled with supported Solidity 0.8.36 produces identical executable creation bytecode; compiler metadata differs.",
+  "deploymentFeeBOT": "0.03813046"
+}

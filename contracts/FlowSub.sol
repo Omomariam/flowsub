@@ -123,7 +123,27 @@ contract FlowSub {
     function getSubscription(address subscriber, uint256 planId) external view returns (Subscription memory) { return _subscriptions[subscriber][planId]; }
     function getMerchantPlanIds(address merchant) external view returns (uint256[] memory) { return _merchantPlanIds[merchant]; }
     function getSubscriberPlanIds(address subscriber) external view returns (uint256[] memory) { return _subscriberPlanIds[subscriber]; }
+    function getSubscriberPlanCount(address subscriber) external view returns (uint256) { return _subscriberPlanIds[subscriber].length; }
+    function getSubscriberPlanIdsPage(address subscriber, uint256 offset, uint256 limit) external view returns (uint256[] memory page) {
+        require(limit > 0 && limit <= 100, "INVALID_PAGE_SIZE");
+        uint256[] storage entries = _subscriberPlanIds[subscriber];
+        if (offset >= entries.length) return new uint256[](0);
+        uint256 size = entries.length - offset;
+        if (size > limit) size = limit;
+        page = new uint256[](size);
+        for (uint256 i; i < size; i++) page[i] = entries[offset + i];
+    }
     function getPlanSubscribers(uint256 planId) external view returns (address[] memory) { return _planSubscribers[planId]; }
+    function getPlanSubscriberCount(uint256 planId) external view returns (uint256) { return _planSubscribers[planId].length; }
+    function getPlanSubscribersPage(uint256 planId, uint256 offset, uint256 limit) external view returns (address[] memory page) {
+        require(limit > 0 && limit <= 100, "INVALID_PAGE_SIZE");
+        address[] storage entries = _planSubscribers[planId];
+        if (offset >= entries.length) return new address[](0);
+        uint256 size = entries.length - offset;
+        if (size > limit) size = limit;
+        page = new address[](size);
+        for (uint256 i; i < size; i++) page[i] = entries[offset + i];
+    }
 
     function _safeTransferFrom(address token, address from, address to, uint256 amount) private {
         (bool success, bytes memory result) = token.call(abi.encodeCall(IERC20.transferFrom, (from, to, amount)));

@@ -1,0 +1,46 @@
+{
+  "chainId": 677,
+  "explorer": "https://scan.botchain.ai",
+  "deployer": "0x3FC4F07525cbB3a3aFd75d03758b79B8bdfa0f3A",
+  "token": {
+    "address": "0xaBabc7Ddc03e501d190C676BF3d92ef0e6e87a3C",
+    "symbol": "USDT",
+    "decimals": 6
+  },
+  "flowSub": {
+    "address": "0xa1a3f61d532ad5ef961cdf36812c1f19c05a39c7",
+    "transactionHash": "0x06e988df75677b5d06939d8e86fbca03df161cdeff804a59e29183b3fff6670e",
+    "blockNumber": "23686256"
+  },
+  "compilerVersion": "v0.8.37+commit.f401782d",
+  "compilerSettings": {
+    "evmVersion": "paris",
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode.object"
+        ]
+      }
+    }
+  },
+  "artifactHash": "d6f65f0eda04813dd9dfebf8640cf50f22f66f6b0dc77009bff8e21783785b11",
+  "sourceHash": "6e9c6d2cb5fa904183d39065787d6fdee8b5150b8693915834c4427410f44a42",
+  "constructorArguments": "0x000000000000000000000000ababc7ddc03e501d190c676bf3d92ef0e6e87a3c",
+  "deployedAt": "2026-09-18T16:29:00.390Z",
+  "verification": {
+    "status": "verified",
+    "match": "partial",
+    "verifiedAt": "2026-09-18T16:32:59.580776Z",
+    "explorerUrl": "https://scan.botchain.ai/address/0xa1a3f61d532ad5ef961cdf36812c1f19c05a39c7?tab=contract",
+    "deploymentCompiler": "v0.8.37+commit.f401782d",
+    "verificationCompiler": "v0.8.36+commit.8a079791",
+    "executableBytecodeMatches": true,
+    "reason": "BOTScan does not yet support deployed Solidity 0.8.37. Identical source compiled with supported Solidity 0.8.36 produces identical executable creation bytecode; compiler metadata differs.",
+    "deploymentFeeBOT": "0.03813046"
+  }
+}

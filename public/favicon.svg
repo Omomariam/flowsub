@@ -4,7 +4,7 @@
       <stop stop-color="#10243A"/>
       <stop offset="1" stop-color="#071525"/>
     </linearGradient>
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+    <filter id="glow" filterUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
       <feGaussianBlur stdDeviation="2" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>

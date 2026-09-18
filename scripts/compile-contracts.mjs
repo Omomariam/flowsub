@@ -4,7 +4,7 @@ import solc from 'solc'
 
 const contracts=['FlowSub.sol','MockUSDT.sol']
 const sources=Object.fromEntries(contracts.map(name=>[name,{content:fs.readFileSync(path.resolve('contracts',name),'utf8')}]))
-const input={language:'Solidity',sources,settings:{optimizer:{enabled:true,runs:200},outputSelection:{'*':{'*':['abi','evm.bytecode.object']}}}}
+const input={language:'Solidity',sources,settings:{evmVersion:'paris',optimizer:{enabled:true,runs:200},outputSelection:{'*':{'*':['abi','evm.bytecode.object']}}}}
 const output=JSON.parse(solc.compile(JSON.stringify(input)))
 const errors=(output.errors||[]).filter(x=>x.severity==='error')
 if(errors.length){errors.forEach(x=>console.error(x.formattedMessage));process.exit(1)}

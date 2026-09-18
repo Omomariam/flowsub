@@ -13,21 +13,40 @@
     "verify:testnet": "node scripts/verify-testnet.mjs",
     "check:testnet": "node scripts/check-deployment.mjs",
     "check:verification": "node scripts/check-verification.mjs",
-    "keeper:once": "node scripts/run-keeper.mjs"
+    "keeper:once": "node scripts/run-keeper.mjs",
+    "test:contracts": "npm run contracts:compile && node --test tests/contracts.test.mjs",
+    "test": "node --experimental-strip-types --test tests/config.test.mjs tests/frontend.test.mjs",
+    "preflight:mainnet": "npm run contracts:compile && node scripts/mainnet-command.mjs preflight",
+    "deploy:mainnet": "npm run contracts:compile && node scripts/mainnet-command.mjs deploy",
+    "verify:mainnet": "node scripts/mainnet-command.mjs verify",
+    "check:mainnet": "node scripts/mainnet-command.mjs check",
+    "check:verification:mainnet": "node scripts/mainnet-command.mjs verification",
+    "keeper:mainnet:once": "node scripts/mainnet-command.mjs keeper",
+    "build:mainnet": "node scripts/build-mainnet.mjs",
+    "test:operations": "npm run contracts:compile && node --test tests/operations.test.mjs",
+    "export:mainnet": "node scripts/mainnet-command.mjs export"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "latest",
-    "lucide-react": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "typescript": "latest",
-    "viem": "^2.56.5",
-    "vite": "latest"
+    "@vitejs/plugin-react": "6.1.1",
+    "lucide-react": "1.46.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "typescript": "7.0.2",
+    "viem": "2.56.5",
+    "vite": "8.3.0"
   },
   "devDependencies": {
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "dotenv": "^17.4.2",
-    "solc": "^0.8.36"
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "dotenv": "17.4.2",
+    "solc": "0.8.36"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "overrides": {
+    "solc": {
+      "tmp": "0.2.7"
+    }
   }
 }

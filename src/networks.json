@@ -1,0 +1,4 @@
+{
+  "testnet": { "id": 968, "name": "BOT Chain Testnet", "rpc": "https://rpc.bohr.life", "explorer": "https://scan.bohr.life", "testnet": true },
+  "mainnet": { "id": 677, "name": "BOT Chain Mainnet", "rpc": "https://rpc.botchain.ai", "explorer": "https://scan.botchain.ai", "testnet": false }
+}
